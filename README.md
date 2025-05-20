@@ -27,11 +27,38 @@ facial_detection/
 
 ## Installation
 
+### General Installation
 1. Clone the repository
 2. Install the required dependencies:
    ```
    pip install -r requirements.txt
    ```
+
+### Raspberry Pi Specific Setup
+1. Update your Raspberry Pi:
+   ```
+   sudo apt-get update
+   sudo apt-get upgrade
+   ```
+
+2. Install system dependencies:
+   ```
+   sudo apt-get install -y python3-pip python3-dev libatlas-base-dev
+   sudo apt-get install -y libjasper-dev libqtgui4 libqt4-test libhdf5-dev
+   ```
+
+3. Install Python dependencies optimized for Raspberry Pi:
+   ```
+   pip3 install opencv-python-headless  # Optimized OpenCV build
+   pip3 install tensorflow-aarch64      # ARM-optimized TensorFlow
+   pip3 install picamera2               # For Raspberry Pi camera
+   ```
+
+### Performance Optimization for Raspberry Pi
+- Use `picamera2` instead of OpenCV for video capture
+- Reduce resolution to 640x480 for faster processing
+- Consider running inference at 2-3 FPS for better performance
+- Enable OpenCV GPU acceleration if available
 
 ## Usage
 

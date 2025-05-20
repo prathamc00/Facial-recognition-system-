@@ -241,7 +241,7 @@ class FacialRecognitionApp:
         while self.is_running:
             ret, frame = self.camera.read()
             if not ret:
-                print("Failed to capture frame")
+                print("Failed to  capture frame")
                 break
             
             # Process the frame
