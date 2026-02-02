@@ -7,28 +7,28 @@ A comprehensive machine learning-based facial recognition system with liveness d
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.8-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## ✨ Features
+## Features
 
 ### Core Functionality
-- 🔍 **Real-time Face Detection** - Fast and accurate face detection using OpenCV Haar Cascades
-- 🤖 **Face Recognition** - Deep learning-based recognition using MobileNetV2 transfer learning
-- 👤 **Multi-Person Registration** - Easy registration system for multiple people
-- 💾 **SQLite Database** - Efficient storage of face data with quality metrics
+- **Real-time Face Detection** - Fast and accurate face detection using OpenCV Haar Cascades
+- **Face Recognition** - Deep learning-based recognition using MobileNetV2 transfer learning
+- **Multi-Person Registration** - Easy registration system for multiple people
+- **SQLite Database** - Efficient storage of face data with quality metrics
 
 ### Advanced Features
-- 🛡️ **Liveness Detection** - Anti-spoofing with eye blink and texture analysis
-- 📊 **Attendance Tracking** - Automatic attendance logging with Excel export
-- 📈 **Performance Monitoring** - Real-time FPS, accuracy, and timing metrics
-- 🎨 **Data Augmentation** - Automatic training data enhancement for better accuracy
-- ⚡ **Smart Training** - Early stopping and adaptive learning rate
+- **Liveness Detection** - Anti-spoofing with eye blink and texture analysis
+- **Attendance Tracking** - Automatic attendance logging with Excel export
+- **Performance Monitoring** - Real-time FPS, accuracy, and timing metrics
+- **Data Augmentation** - Automatic training data enhancement for better accuracy
+- **Smart Training** - Early stopping and adaptive learning rate
 
 ### User Interface
-- 🖥️ **Modern GUI** - Intuitive tkinter-based interface
-- 📹 **Live Video Feed** - Real-time webcam preview with annotations
-- 🎯 **Multiple Modes** - Detection, Recognition, and Registration modes
-- 📉 **Visual Metrics** - Live performance statistics display
+- **Modern GUI** - Intuitive tkinter-based interface
+- **Live Video Feed** - Real-time webcam preview with annotations
+- **Multiple Modes** - Detection, Recognition, and Registration modes
+- **Visual Metrics** - Live performance statistics display
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -74,7 +74,7 @@ A comprehensive machine learning-based facial recognition system with liveness d
    python src/gui_app.py
    ```
 
-## 📖 Usage Guide
+## Usage Guide
 
 ### 1. Register Faces
 
@@ -101,7 +101,7 @@ A comprehensive machine learning-based facial recognition system with liveness d
 - Use the attendance logger to export to Excel format
 - Duplicate entries within 30 seconds are automatically filtered
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 Facial-recognition-system/
@@ -128,7 +128,7 @@ Facial-recognition-system/
 └── README.md                 # This file
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Edit `config.json` to customize:
 
@@ -149,7 +149,7 @@ Edit `config.json` to customize:
 }
 ```
 
-## 🔧 Advanced Features
+## Advanced Features
 
 ### Data Augmentation
 
@@ -197,7 +197,7 @@ attendance_logger.export_to_excel(
 )
 ```
 
-## 📊 Performance
+## Performance
 
 Typical performance on a modern PC:
 - **FPS**: 25-30 FPS
@@ -205,7 +205,7 @@ Typical performance on a modern PC:
 - **Recognition Time**: 30-50ms per face
 - **Training Time**: 2-5 minutes (depends on dataset size)
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Camera Not Working
 ```python
@@ -229,14 +229,14 @@ pip install --force-reinstall -r requirements.txt
 - These are normal and can be ignored
 - GPU support is optional for better performance
 
-## 🔒 Security Features
+## Security Features
 
 - **Liveness Detection** - Prevents photo/video spoofing
 - **Confidence Thresholds** - Reject low-confidence recognitions
 - **Quality Metrics** - Only save high-quality face images
 - **Duplicate Prevention** - Avoid logging same person multiple times
 
-## 🌐 Raspberry Pi Support
+## Raspberry Pi Support
 
 For Raspberry Pi deployment, use:
 ```bash
@@ -249,7 +249,7 @@ Optimizations for Pi:
 - ARM-optimized TensorFlow
 - Hardware camera support
 
-## 📝 API Reference
+## API Reference
 
 ### FaceRecognizer
 
@@ -285,25 +285,25 @@ stats = logger.get_statistics()
 logger.export_to_excel(output_file='attendance.xlsx')
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **OpenCV** - Computer vision library
 - **TensorFlow/Keras** - Deep learning framework
 - **MobileNetV2** - Transfer learning base model
 - **dlib** - Facial landmark detection
 
-## 📧 Support
+## Support
 
 For questions or support, please open an issue on the repository.
 
 ---
 
-**Made with ❤️ by Pratham**
+**Made with love by Pratham**
