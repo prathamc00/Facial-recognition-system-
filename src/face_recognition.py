@@ -67,9 +67,10 @@ class FaceRecognizer:
         
         return self.model
     
-    def train(self, face_images, labels, validation_split=0.2, epochs=20, batch_size=32):
+    def train(self, face_images, labels, validation_split=0.2, epochs=20, batch_size=32, 
+              use_augmentation=False, augmentation_factor=3):
         """
-        Train the face recognition model.
+        Train the face recognition model with enhanced callbacks and optional augmentation.
         
         Args:
             face_images: List or array of face images
@@ -77,10 +78,24 @@ class FaceRecognizer:
             validation_split: Fraction of data to use for validation
             epochs: Number of training epochs
             batch_size: Training batch size
+            use_augmentation: Whether to use data augmentation
+            augmentation_factor: Number of augmented versions per image if using augmentation
             
         Returns:
             Training history
         """
+        # Apply data augmentation if requested
+        if use_augmentation:
+            try:
+                from data_augmentation import DataAugmentation
+                aug = DataAugmentation()
+                face_images, labels = aug.create_training_set(
+                    face_images, labels, augmentation_factor=augmentation_factor
+                )
+                print(f"Data augmentation applied: {len(face_images)} total images")
+            except ImportError:
+                print("Warning: data_augmentation module not found. Skipping augmentation.")
+        
         # Convert labels to numerical encoding
         self.label_encoder.fit(labels)
         numerical_labels = self.label_encoder.transform(labels)
@@ -96,22 +111,46 @@ class FaceRecognizer:
         processed_images = np.array([self._preprocess_image(img) for img in face_images])
         
         # Create a new optimizer instance for each training session
-        optimizer = tf.keras.optimizers.Adam()
+        optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
         self.model.compile(
             optimizer=optimizer,
             loss='categorical_crossentropy',
             metrics=['accuracy']
         )
         
+        # Define callbacks for better training
+        from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+        
+        callbacks = [
+            # Stop training when validation loss doesn't improve for 5 epochs
+            EarlyStopping(
+                monitor='val_loss',
+                patience=5,
+                restore_best_weights=True,
+                verbose=1
+            ),
+            # Reduce learning rate when validation loss plateaus
+            ReduceLROnPlateau(
+                monitor='val_loss',
+                factor=0.5,
+                patience=3,
+                min_lr=0.00001,
+                verbose=1
+            )
+        ]
+        
         # Train the model
         history = self.model.fit(
             processed_images, categorical_labels,
             validation_split=validation_split,
             epochs=epochs,
-            batch_size=batch_size
+            batch_size=batch_size,
+            callbacks=callbacks,
+            verbose=1
         )
         
         return history
+
     
     def recognize(self, face_image):
         """

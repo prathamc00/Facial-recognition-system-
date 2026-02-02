@@ -12,6 +12,7 @@ from face_recognition import FaceRecognizer
 from face_database import FaceDatabase
 from performance_logger import PerformanceLogger
 from liveness_detection import LivenessDetector
+from attendance_logger import AttendanceLogger
 
 class FacialRecognitionGUI:
     def __init__(self, root):
@@ -33,6 +34,7 @@ class FacialRecognitionGUI:
         self.db = FaceDatabase("../data/faces.db")
         self.logger = PerformanceLogger()
         self.liveness_detector = LivenessDetector()
+        self.attendance_logger = AttendanceLogger()
         
         # Security settings
         self.liveness_check_enabled = True  # Enable liveness detection by default
@@ -234,6 +236,9 @@ class FacialRecognitionGUI:
                                     lighting="normal", face_angle="frontal")
                                 
                                 if person_name and confidence > 0.5:
+                                    # Log attendance
+                                    self.attendance_logger.log_attendance(person_name, confidence)
+                                    
                                     # Add text with recognized name and confidence
                                     label = f"{person_name} ({confidence:.2f})"
                                     cv2.putText(result_frame, label, (x, y-10), 

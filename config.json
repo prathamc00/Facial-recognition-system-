@@ -1,0 +1,63 @@
+{
+  "camera": {
+    "default_index": 0,
+    "resolution": {
+      "width": 640,
+      "height": 480
+    },
+    "fps": 30
+  },
+  "recognition": {
+    "confidence_threshold": 0.75,
+    "recognition_threshold": 0.70,
+    "min_face_size": 80
+  },
+  "training": {
+    "epochs": 20,
+    "batch_size": 32,
+    "validation_split": 0.2,
+    "use_augmentation": true,
+    "augmentation_factor": 3,
+    "learning_rate": 0.001
+  },
+  "detection": {
+    "scale_factor": 1.1,
+    "min_neighbors": 5,
+    "min_detection_size": [30, 30]
+  },
+  "liveness": {
+    "enabled": true,
+    "eye_ar_threshold": 0.25,
+    "eye_ar_consec_frames": 3,
+    "blink_threshold": 2,
+    "motion_threshold": 0.5
+  },
+  "attendance": {
+    "duplicate_threshold_seconds": 30,
+    "auto_export": false,
+    "export_format": "xlsx"
+  },
+  "ui": {
+    "theme": "dark",
+    "show_fps": true,
+    "show_confidence": true,
+    "show_quality_metrics": true,
+    "window_title": "Facial Recognition System"
+  },
+  "performance": {
+    "log_metrics": true,
+    "max_samples": 100,
+    "auto_export_logs": false
+  },
+  "database": {
+    "path": "data/face_database.db",
+    "backup_enabled": true,
+    "backup_interval_days": 7
+  },
+  "paths": {
+    "data_dir": "data",
+    "models_dir": "models",
+    "logs_dir": "logs",
+    "faces_dir": "data/faces"
+  }
+}

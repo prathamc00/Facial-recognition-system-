@@ -1,139 +1,309 @@
-# Face Recognition System
+# Facial Recognition System
 
-A machine learning-based face recognition system that can detect and recognize faces in images and video streams using a webcam interface.
+A comprehensive machine learning-based facial recognition system with liveness detection, attendance tracking, and real-time performance monitoring. Built with Python, TensorFlow, and OpenCV.
 
-## Features
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-orange.svg)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.8-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-- Face detection in images and video streams using OpenCV's Haar Cascade classifier
-- Face recognition and identification using a deep learning model based on MobileNetV2
-- Real-time webcam integration for face detection and recognition
-- SQLite database for storing facial data and person information
-- Simple keyboard interface for interaction
+## ✨ Features
 
-## Project Structure
+### Core Functionality
+- 🔍 **Real-time Face Detection** - Fast and accurate face detection using OpenCV Haar Cascades
+- 🤖 **Face Recognition** - Deep learning-based recognition using MobileNetV2 transfer learning
+- 👤 **Multi-Person Registration** - Easy registration system for multiple people
+- 💾 **SQLite Database** - Efficient storage of face data with quality metrics
 
-```
-facial_detection/
-├── data/                  # Directory for storing training data and face database
-├── models/                # Directory for storing trained models
-├── src/                   # Source code
-│   ├── face_detection.py  # Face detection module
-│   ├── face_recognition.py # Face recognition module
-│   ├── database.py        # Database operations
-│   └── main.py            # Main application
-├── requirements.txt       # Project dependencies
-└── README.md             # Project documentation
-```
+### Advanced Features
+- 🛡️ **Liveness Detection** - Anti-spoofing with eye blink and texture analysis
+- 📊 **Attendance Tracking** - Automatic attendance logging with Excel export
+- 📈 **Performance Monitoring** - Real-time FPS, accuracy, and timing metrics
+- 🎨 **Data Augmentation** - Automatic training data enhancement for better accuracy
+- ⚡ **Smart Training** - Early stopping and adaptive learning rate
 
-## Installation
+### User Interface
+- 🖥️ **Modern GUI** - Intuitive tkinter-based interface
+- 📹 **Live Video Feed** - Real-time webcam preview with annotations
+- 🎯 **Multiple Modes** - Detection, Recognition, and Registration modes
+- 📉 **Visual Metrics** - Live performance statistics display
 
-### General Installation
-1. Clone the repository
-2. Install the required dependencies:
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Python 3.8 or higher
+- Webcam
+- Windows OS (for automated setup script)
+
+### Installation
+
+#### Automated Setup (Windows)
+
+1. **Clone or download this repository**
+
+2. **Run the setup script:**
+   ```batch
+   setup_windows.bat
    ```
+   This will:
+   - Check for Python installation
+   - Install all dependencies
+   - Create necessary directories
+   - Initialize the database
+
+3. **Launch the application:**
+   ```batch
+   python src/gui_app.py
+   ```
+
+#### Manual Setup
+
+1. **Install dependencies:**
+   ```bash
    pip install -r requirements.txt
    ```
 
-### Raspberry Pi Specific Setup
-1. Update your Raspberry Pi:
-   ```
-   sudo apt-get update
-   sudo apt-get upgrade
+2. **Create directories:**
+   ```bash
+   mkdir data models logs
    ```
 
-2. Install system dependencies:
-   ```
-   sudo apt-get install -y python3-pip python3-dev libatlas-base-dev
-   sudo apt-get install -y libjasper-dev libqtgui4 libqt4-test libhdf5-dev
-   ```
-
-3. Install Python dependencies optimized for Raspberry Pi:
-   ```
-   pip3 install opencv-python-headless  # Optimized OpenCV build
-   pip3 install tensorflow-aarch64      # ARM-optimized TensorFlow
-   pip3 install picamera2               # For Raspberry Pi camera
+3. **Run the application:**
+   ```bash
+   python src/gui_app.py
    ```
 
-### Performance Optimization for Raspberry Pi
-- Use `picamera2` instead of OpenCV for video capture
-- Reduce resolution to 640x480 for faster processing
-- Consider running inference at 2-3 FPS for better performance
-- Enable OpenCV GPU acceleration if available
+## 📖 Usage Guide
 
-## Usage
+### 1. Register Faces
 
-prat### Detailed Setup Instructions
-1. **Setup**:
-   - Install Python 3.8 or higher
-   - Install dependencies: `pip install -r requirements.txt`
-   - Create a database: `python src/database.py --init`
-   - Ensure webcam is properly connected and working
+1. Click **"Registration"** button
+2. Enter the person's name when prompted
+3. Look at the camera while the system collects 10 face images
+4. Click **"Save Faces"** to save to database
 
-### Face Registration Process
-2. **Register Faces**:
-   - Create a folder for each person in `data/` directory (e.g., `data/john_doe/`)
-   - Place at least 10 clear face images per person in their respective folder
-   - Images should show different angles and lighting conditions
-   - Run registration: `python src/main.py --register`
-   - Follow on-screen prompts to complete registration
+### 2. Train the Model
 
-### Model Training
-3. **Train Model**:
-   - Ensure you have registered at least 2 different people
-   - Train the recognition model: `python src/main.py --train`
-   - Training progress will be displayed in console
-   - Model will be saved to `models/` directory
+1. After registering at least 2 people, click **"Train Model"**
+2. Wait for training to complete (shows progress dialog)
+3. Model is automatically saved to `models/` directory
 
-### Recognition Modes
-4. **Recognize Faces**:
-   - For image recognition: `python src/main.py --recognize --image path/to/image.jpg`
-   - For webcam recognition: `python src/main.py --live`
-   - Recognition confidence threshold is set at 85% by default
+### 3. Recognize Faces
 
-### Additional Options
-5. **Additional Options**:
-   - View help: `python src/main.py --help`
-   - Clear database: `python src/database.py --clear`
-   - View registered persons: `python src/database.py --list`
+1. Click **"Recognition"** mode
+2. The system will automatically recognize and label faces
+3. Attendance is logged automatically with timestamps
 
-### Troubleshooting
-- If webcam doesn't work:
-  - Check device permissions
-  - Try different camera index (e.g., `--camera 1`)
-- If recognition accuracy is low:
-  - Add more training images
-  - Ensure good lighting conditions
-  - Retrain the model
+### 4. View Attendance
 
-### Commands
+- Attendance logs are saved in `logs/attendance_YYYY-MM-DD.csv`
+- Use the attendance logger to export to Excel format
+- Duplicate entries within 30 seconds are automatically filtered
 
-The application supports the following keyboard commands:
+## 🏗️ Project Structure
 
-- `q` - Quit the application
-- `r` - Switch to registration mode (you'll be prompted to enter a person's name)
-- `f` - Switch to recognition mode
-- `d` - Switch to detection mode
-- `s` - Save collected faces (in registration mode)
-- `t` - Train recognition model
+```
+Facial-recognition-system/
+├── data/                      # Face images and database
+│   └── face_database.db      # SQLite database
+├── models/                    # Trained models
+│   └── face_recognition_model.h5
+├── logs/                      # Attendance and performance logs
+│   ├── attendance_*.csv
+│   └── recognition_metrics.csv
+├── src/                       # Source code
+│   ├── gui_app.py            # Main GUI application
+│   ├── face_detection.py     # Face detection module
+│   ├── face_recognition.py   # Face recognition module
+│   ├── face_database.py      # Database operations
+│   ├── liveness_detection.py # Anti-spoofing
+│   ├── attendance_logger.py  # Attendance tracking
+│   ├── performance_logger.py # Performance metrics
+│   └── data_augmentation.py  # Data augmentation
+├── requirements.txt           # Windows dependencies
+├── requirements_rpi.txt       # Raspberry Pi dependencies
+├── config.json               # Configuration settings
+├── setup_windows.bat         # Automated setup script
+└── README.md                 # This file
+```
 
-### Workflow
+## ⚙️ Configuration
 
-1. **Register Faces**:
-   - Press `r` and enter a person's name
-   - The system will collect 10 face images
-   - Press `s` to save the collected faces
+Edit `config.json` to customize:
 
-2. **Train the Model**:
-   - After registering faces for multiple people, press `t` to train the recognition model
-   - The model will be saved to the `models` directory
+```json
+{
+  "recognition": {
+    "confidence_threshold": 0.75,
+    "min_face_size": 80
+  },
+  "training": {
+    "epochs": 20,
+    "use_augmentation": true,
+    "augmentation_factor": 3
+  },
+  "liveness": {
+    "enabled": true
+  }
+}
+```
 
-3. **Recognize Faces**:
-   - Press `f` to switch to recognition mode
-   - The system will identify faces in the webcam feed and display names with confidence scores
+## 🔧 Advanced Features
 
-## Dependencies
+### Data Augmentation
 
-- OpenCV - For image processing and face detection
-- NumPy - For numerical operations
-- TensorFlow/Keras - For deep learning models
-- SQLite - For database operations
+The system automatically augments training data with:
+- Random rotation (±15°)
+- Brightness adjustment
+- Contrast variation
+- Gaussian noise
+- Horizontal flipping
+
+Enable in training:
+```python
+recognizer.train(face_images, labels, use_augmentation=True, augmentation_factor=3)
+```
+
+### Liveness Detection
+
+Prevents spoofing with:
+- **Eye Blink Detection** - Tracks eye aspect ratio
+- **Motion Detection** - Analyzes frame-to-frame changes
+- **Texture Analysis** - Detects print/screen artifacts
+
+Toggle in GUI or code:
+```python
+liveness_detector.check_liveness(frame, face_rect)
+```
+
+### Performance Monitoring
+
+Track system performance:
+```python
+logger = PerformanceLogger()
+metrics = logger.get_metrics()
+# Returns: FPS, detection time, recognition time, etc.
+```
+
+### Attendance Export
+
+Export attendance to Excel:
+```python
+attendance_logger.export_to_excel(
+    start_date='2026-02-01',
+    end_date='2026-02-28',
+    output_file='february_attendance.xlsx'
+)
+```
+
+## 📊 Performance
+
+Typical performance on a modern PC:
+- **FPS**: 25-30 FPS
+- **Detection Time**: 15-25ms per frame
+- **Recognition Time**: 30-50ms per face
+- **Training Time**: 2-5 minutes (depends on dataset size)
+
+## 🐛 Troubleshooting
+
+### Camera Not Working
+```python
+# Try different camera index
+camera = cv2.VideoCapture(1)  # 0, 1, 2, etc.
+```
+
+### Import Errors
+```bash
+# Reinstall dependencies
+pip install --force-reinstall -r requirements.txt
+```
+
+### Low Recognition Accuracy
+- Add more training images (10-20 per person)
+- Ensure good lighting conditions
+- Retrain with data augmentation enabled
+- Check face image quality in database
+
+### TensorFlow Warnings
+- These are normal and can be ignored
+- GPU support is optional for better performance
+
+## 🔒 Security Features
+
+- **Liveness Detection** - Prevents photo/video spoofing
+- **Confidence Thresholds** - Reject low-confidence recognitions
+- **Quality Metrics** - Only save high-quality face images
+- **Duplicate Prevention** - Avoid logging same person multiple times
+
+## 🌐 Raspberry Pi Support
+
+For Raspberry Pi deployment, use:
+```bash
+pip install -r requirements_rpi.txt
+```
+
+Optimizations for Pi:
+- Reduced resolution (640x480)
+- Lower FPS target (10-15 FPS)
+- ARM-optimized TensorFlow
+- Hardware camera support
+
+## 📝 API Reference
+
+### FaceRecognizer
+
+```python
+from face_recognition import FaceRecognizer
+
+recognizer = FaceRecognizer()
+recognizer.build_model(num_classes=5)
+history = recognizer.train(face_images, labels, epochs=20)
+label, confidence = recognizer.recognize(face_image)
+recognizer.save_model('model.h5')
+```
+
+### FaceDatabase
+
+```python
+from face_database import FaceDatabase
+
+db = FaceDatabase('faces.db')
+person_id = db.add_person('John Doe')
+db.add_face(person_id, face_image, face_encoding)
+people = db.get_all_people()
+```
+
+### AttendanceLogger
+
+```python
+from attendance_logger import AttendanceLogger
+
+logger = AttendanceLogger()
+logger.log_attendance('John Doe', confidence=0.95)
+stats = logger.get_statistics()
+logger.export_to_excel(output_file='attendance.xlsx')
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🙏 Acknowledgments
+
+- **OpenCV** - Computer vision library
+- **TensorFlow/Keras** - Deep learning framework
+- **MobileNetV2** - Transfer learning base model
+- **dlib** - Facial landmark detection
+
+## 📧 Support
+
+For questions or support, please open an issue on the repository.
+
+---
+
+**Made with ❤️ by Pratham**

@@ -1,24 +1,39 @@
-# Core dependencies
-opencv-python-headless==4.8.0  # Optimized for Raspberry Pi
-numpy==1.24.3
+# Core Dependencies for Windows
+opencv-python==4.8.1.78
+numpy==1.26.4
 pillow==10.0.0
-picamera2==0.3.12  # Raspberry Pi camera support
-libcamera==0.1.0  # Required for picamera2
 
-# Deep learning (ARM optimized)
-tensorflow-aarch64==2.13.0  # ARM-optimized TensorFlow
-keras==2.13.1
+# Deep Learning
+tensorflow==2.15.0
+keras==2.15.0
 
-# Database
-sqlite3==2.6.0
-
-# Utilities
-matplotlib==3.7.2
+# Machine Learning
 scikit-learn==1.3.0
 scipy==1.11.1
 
-# Liveness detection
-dlib==19.24.0  # Ensure ARM-compatible version
+# Database
+# Note: sqlite3 is included in Python standard library
 
-# GUI
-tk==0.1.0
+# Visualization
+matplotlib==3.7.2
+
+# GUI (tkinter is included in Python standard library)
+# Additional GUI enhancements
+ttkthemes==3.2.2
+
+# Utilities
+tqdm==4.66.1
+
+# Face recognition enhancements
+dlib==19.24.2
+imutils==0.5.4
+
+# Data export
+openpyxl==3.1.2
+pandas==2.0.3
+
+# Configuration
+pyyaml==6.0.1
+
+# Liveness detection
+mediapipe==0.10.7
